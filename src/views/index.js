@@ -14,21 +14,32 @@ const tabIconName = {
     Account: 'user'
 }
 
+const screens = {
+    Home,
+    Market,
+    Fund,
+    Account
+}
 
-const TabNavigator = createBottomTabNavigator({
-    Home: {
-        screen: Home
-    },
-    Market: {
-        screen: Market
-    },
-    Fund: {
-        screen: Fund
-    },
-    Account: {
-        screen: Account
-    },
-}, {
+function createRouter(screens = []) {
+    const router = {}
+    for (const key in screens) {
+        const screen = screens[key];
+        router[key] = {
+            screen
+        }
+    }
+    return router
+}
+
+
+const routeConfigMap = createRouter(screens)
+
+
+
+
+
+const TabNavigator = createBottomTabNavigator(routeConfigMap, {
     initialRouteName: 'Home',
     tabBarOptions: {
         activeTintColor: '#0f49a8', //活动选项卡的标签和图标颜色
