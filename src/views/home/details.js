@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, Button} from 'react-native';
-
-export default class DetailsScreen extends Component {
+import { connect } from 'react-redux'
+import { ADD_TODO } from '../../redux/constant';
+class DetailsScreen extends Component {
     static navigationOptions = {
         title: 'Details'
     }
@@ -47,10 +48,25 @@ export default class DetailsScreen extends Component {
             </Text>
             <Button
                 title="Set"
-                onPress={() => this.props.navigation.setParams({
-                    name: 'Detail'
-                })}/>
+                onPress={() => {
+                    this.props.navigation.setParams({
+                        name: 'Detail'
+                    })
+                }}/>
+            <Button
+                title="Back"
+                onPress={() => {
+                    this.props.dispatch({
+                        type: ADD_TODO,
+                        count: 'back1'
+                    })
+                    this.props.navigation.navigate('Home',{
+                        name: 'Detail'
+                    })
+                }}/>
         </View>
       );
     }
   }
+
+export default connect()(DetailsScreen)

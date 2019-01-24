@@ -11,9 +11,9 @@ import {
 
 export default class FeatureList extends PureComponent {
     render() {
-        const { data } = this.props
+        const { data, handleClick } = this.props
         return (
-            <View style={styles.container}>
+            <View key={data.id} style={styles.container}>
                 <Grid
                     data={data}
                     hasLine={false}
@@ -24,9 +24,7 @@ export default class FeatureList extends PureComponent {
                     carouselProps={{
                         dotStyle: {bottom: -15}
                     }}
-                    onPress={(item) => {
-                        alert(item.text)
-                    }}
+                    onPress={handleClick}
                 />
             </View>
         )

@@ -43,13 +43,12 @@ function _axios(url, params) {
         cookie,
         ...headers
     } : headers
-    console.log(headers)
-    console.log(AXIOS_DEFAULT_CONFIG)
     return axiosInstance({
         url: ctx.url,
         method: method,
         params: get,
         data: post,
+        baseURL: params.baseURL || AXIOS_DEFAULT_CONFIG.baseURL,
         headers
     })
 }
